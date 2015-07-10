@@ -1,4 +1,4 @@
-class Solution1:
+class Solution:
     def generateParenthesis(self, n):
         def generate(p, left, right, paren = []):
             if left: generate( p + '(', left - 1, right, paren)
@@ -6,7 +6,6 @@ class Solution1:
             if not right: paren += p,
             return paren
             
-class Solution2:
     def Parenthesis(self, list_Parenthesis, candidate, left, right):
         if right == 0:
             list_Parenthesis.append(candidate)
@@ -22,6 +21,6 @@ class Solution2:
         self.Parenthesis(list_Parenthesis, candidate,  n, n)
         return list_Parenthesis
 if __name__ == "__main__":    
-    a = Solution1()
+    a = Solution()
     print a.generateParenthesis(3)
             
