@@ -1,4 +1,20 @@
 class Solution:
+    # @param {integer[]} height
+    # @return {integer}
+    def maxArea(self, height):
+        """Given n non-negative integers a1, a2, ..., an, where each represents a
+        point at coordinate (i, ai). n vertical lines are drawn such that the two
+        endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together
+        with x-axis forms a container, such that the container contains the most water.
+        """
+        i, j = 0, len(height) - 1
+        area = 0
+        while i < j:
+            h = min(height[i], height[j])
+            area = max(area, h * (i - j))
+            while height[i] <= h and i < j: i = i + 1
+            while height[j] <= h and i < j: j = j - 1
+        return area
     # @descrip Problem: Find the contiguous subarray within an array (containing at least one number) which has the largest product.
     #For example, given the array [2,3,-2,4],
     #the contiguous subarray [2,3] has the largest product = 6.
@@ -6,6 +22,7 @@ class Solution:
     # @param {integer[]} nums
     # @return {integer}
     def maxProduct(self, nums):
+        
         #Dynamic solution
         #For each state, knowledge need to be maintained including
         #  1. current max_p
