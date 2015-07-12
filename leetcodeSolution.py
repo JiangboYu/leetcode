@@ -1,4 +1,38 @@
 class Solution:
+    # @param {integer[]} nums
+    # @return {void} Do not return anything, modify nums in-place instead.
+    def nextPermutation(self, nums):
+        """
+        Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
+        If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).
+        The replacement must be in-place, do not allocate extra memory.
+        Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.
+        1,2,3 -> 1,3,2
+        3,2,1 -> 1,2,3
+        1,1,5 -> 1,5,1
+        2, 3, 1 -> 3, 1, 2
+        1, 3, 2 -> 3, 2, 1
+        """
+        # 1, 2, 3 -> 1, 3, 2
+        # 1, 3, 2 -> 2, 1, 3
+        # 1, 4, 5, 5, 7, 6, 5,  4, 
+        i = len(nums) - 1
+        while i > 0 and nums[i - 1] >= nums[i]: i = i - 1
+
+        if i > 0:
+            k = len(nums) - 1
+            while k > i and nums[k] <= nums[i - 1]: k = k - 1
+            tmp = nums[i - 1]
+            nums[i - 1] = nums[k]
+            nums[k] = tmp
+        j, k = i, len(nums) - 1
+        while j < k:
+            tmp = nums[j]
+            nums[j] = nums[k]
+            nums[k] = tmp
+            j = j + 1
+            k = k -  1
+        
     # @param {integer} n
     # @return {integer}
     def countDigitOne(self, n):
@@ -78,6 +112,12 @@ class Solution:
 if __name__ == "__main__":    
     a = Solution()
     #print a.maxProduct([2,3,-2,4])
-    print a.countDigitOne(8192)
+    b = [ 1, 3, 2]
+    a.nextPermutation(b)
+    print b
+    b = [ 2, 3, 1]
+    a.nextPermutation(b)
+    print b
+    #print a.countDigitOne(8192)
     #print a.generateParenthesis(3)
             
