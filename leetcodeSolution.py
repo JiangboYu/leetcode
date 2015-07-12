@@ -1,4 +1,21 @@
 class Solution:
+    # @param {integer} n
+    # @return {integer}
+    def countDigitOne(self, n):
+        """ Given an integer n, count the total number of digit 1
+        appearing in all non-negative integers less than or equal to n.
+        For example:
+        Given n = 13,
+        Return 6, because digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.
+        """
+        count = 0
+        factor = 1
+        while factor < n:
+            count = count + (n/factor + 8) /10 * factor  + (1 if n/factor%10 == 1 else 0) * (n%factor + 1)
+            factor = factor * 10
+        return count
+                
+        
     # @param {integer[]} height
     # @return {integer}
     def maxArea(self, height):
@@ -60,6 +77,7 @@ class Solution:
         return list_Parenthesis
 if __name__ == "__main__":    
     a = Solution()
-    print a.maxProduct([2,3,-2,4])
+    #print a.maxProduct([2,3,-2,4])
+    print a.countDigitOne(8192)
     #print a.generateParenthesis(3)
             
