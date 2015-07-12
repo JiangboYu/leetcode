@@ -22,14 +22,10 @@ class Solution:
         if i > 0:
             k = len(nums) - 1
             while k > i and nums[k] <= nums[i - 1]: k = k - 1
-            tmp = nums[i - 1]
-            nums[i - 1] = nums[k]
-            nums[k] = tmp
+            nums[k], nums[i - 1] = nums[i - 1], nums[k]
         j, k = i, len(nums) - 1
         while j < k:
-            tmp = nums[j]
-            nums[j] = nums[k]
-            nums[k] = tmp
+            nums[j], nums[k] = nums[k], nums[j]
             j = j + 1
             k = k -  1
         
